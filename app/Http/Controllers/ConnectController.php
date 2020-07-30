@@ -3,10 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator, Hash, Auth, Str;
+use App\User;
 
 class ConnectController extends Controller
 {
     public function getLogin(){
         return view('connect.login');
+    }
+
+    public function postLogin(Request $request){
+        $rules =[
+            'email' => 'required|email',
+            'password' => 'required|min:8',
+            
+        ];
+        $messages =[
+            'email.required'=>'Su correo electrónico es requerido',
+            'email.email'=>'El formato de su correo electrónico es invalido',
+            'password.required'=>'Por favor escriba una contraseña',
+            'password.min'=>'La contraseña debe tener al menos 8 caracteres.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()):
+            return back()->withErrors($validator)->with('message','Se ha producido un error.')->with('typealert','danger');
+        else:
+            if(Auth::attempt(['email'=>$request->input('email'), 'password'=>$request->input('password')], true)):
+                if(Auth::user()->status =="100"):
+                    return redirect('/logout');
+                else:
+                    return redirect('/');
+                endif;
+            else:
+                return back()->with('message','Email o contraseña incorrecta.')->with('typealert','danger');
+            endif;
+        endif;
+
     }
 }

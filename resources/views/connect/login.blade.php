@@ -15,18 +15,38 @@
                                 <div class="text-center">
                                     <h1 class="h4 text-gray-900 mb-4">Inicar Sesión</h1>
                                 </div>
-                                <form class="user">
+                                {!! Form::open(['url' => '/login']) !!}
                                     <div class="form-group">
-                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Ingresa tú Correo Electrónico...">
+                                        {!!Form::email('email', null, ['class'=> 'form-control form-control-user', 'aria-describedby'=>'emailHelp','placeholder'=>'Ingresa tú Correo Electrónico...', 'required'])!!}
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Contraseña">
+                                        {!!Form::password('password', ['class'=> 'form-control form-control-user', 'placeholder'=>'Contraseña', 'required'])!!}
                                     </div>
-                                        <a href="index.html" class="btn btn-primary btn-user btn-block">Iniciar Sesión</a>
+                                    {!! Form::submit('Iniciar Sesión',['class' =>'btn btn-primary btn-user btn-block']) !!}
                                     <hr>
-                                </form>
+                                {!! Form::close() !!}  
+                                
+                                @if(Session::has('message'))
+                                    <div class="container">
+                                        <div class="mtop16 alert alert-{{ Session::get('typealert') }}" style="display:none;">
+                                            {{ Session::get('message') }}
+                                            @if ($errors->any())
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                            @endif
+                                            <script>
+                                                $('.alert').slideDown();
+                                                setTimeout(function(){ $('.alert').slideUp(); },10000);
+                                            </script>
+                                        </div>
+                                    </div>
+                                @endif
                                 <div class="text-center">
-                                    <a class="small" href="forgot-password.html">Olvidaste tu Contraseña?</a>
+                                    <a class="small"  href="{{url('/recover')}}">¿Olvidaste tu Contraseña?</a>
                                 </div>
                             </div>
                         </div>

@@ -9,9 +9,15 @@ use App\User;
 class ConnectController extends Controller
 {
     public function __Construct(){
-        $this->middleware('guest')->except(['getLogout']);
+        $this->middleware('guest', ['only' =>'showLoginForm']);
     }
 
+    
+    public function showLoginForm(){
+        return view('connect.login');
+
+    }
+    
     public function getLogin(){
         return view('connect.login');
     }
@@ -37,10 +43,11 @@ class ConnectController extends Controller
                 if(Auth::user()->status =="100"):
                     return redirect('/logout');
                 else:
-                    return redirect('/');
+                    return redirect()->route('dashboard');
                 endif;
             else:
-                return back()->with('message','Email o contraseña incorrecta.')->with('typealert','danger');
+                return back()->with('message','Email o contraseña incorrecta.')->with('typealert','danger')
+                ->withInput(request(['email']));
             endif;
         endif;
     }

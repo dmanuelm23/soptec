@@ -8,6 +8,10 @@ use App\User;
 
 class ConnectController extends Controller
 {
+    public function __Construct(){
+        $this->middleware('guest')->except(['getLogout']);
+    }
+
     public function getLogin(){
         return view('connect.login');
     }
@@ -39,6 +43,15 @@ class ConnectController extends Controller
                 return back()->with('message','Email o contraseña incorrecta.')->with('typealert','danger');
             endif;
         endif;
+    }
 
+    public function getLogout(){
+        $status =  Auth::user()->status;
+        Auth::logout();
+        if($status =="100"):
+            return redirect('/login')->with('message','Su usuario fue suspendido')->with('typealert','danger');
+        else:
+            return redirect('/');
+        endif;
     }
 }

@@ -52,7 +52,7 @@ class ConnectController extends Controller
         endif;
     }
 
-    public function getLogout(){
+    public function postLogout(){
         $status =  Auth::user()->status;
         Auth::logout();
         if($status =="100"):

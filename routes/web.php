@@ -17,7 +17,7 @@ Route::get('/', 'ConnectController@showLoginForm');
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/login', 'ConnectController@getLogin')->name('login');
 Route::post('/login', 'ConnectController@postLogin')->name('login');
-Route::get('/logout', 'ConnectController@getLogout')->name('logout');
+Route::post('/logout', 'ConnectController@postLogout')->name('logout');
 
 
 //Catalogos

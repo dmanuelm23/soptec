@@ -1,5 +1,15 @@
-@extends('dashboard.master')
-@section('title', 'dashboard')
-@section('content') 
-<h1>Dashboard</h1>
+@extends('adminlte::page')
+@section('title', 'Dashboard')
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
+@section('content')
+    <p>Welcome to this beautiful admin panel.</p>
+@stop
+
+@section('css')
+    @livewireStyles
+@stop
+@section('js')
+    @livewireScripts
 @stop

@@ -1,6 +1,5 @@
-<h2>Listado de Sucursales</h2>
-<table class="table">
-    <thead>
+<h2>Listado</h2>
+<table class="table table-striped table-bordered">
         <thead>
             <tr>
                 <th>ID</th>
@@ -11,10 +10,9 @@
                 <th>Activo</th>
                 <th>Localidad</th>
                 <th>Estado</th>
-                <th colspan="2">&nbsp;</th>
+                <th colspan="2">Acción</th>
             </tr>
         </thead>
-    </thead>
     <tbody>
         @foreach ($branchoffices as $branchoffice)
         <tr>

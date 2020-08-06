@@ -17,7 +17,7 @@
                                 </div>
                                 {!! Form::open(['url' => '/login']) !!}
                                     <div class="form-group">
-                                        {!!Form::email('email', old('email'), ['class'=> 'form-control form-control-user', 'aria-describedby'=>'emailHelp','placeholder'=>'Ingresa tú Correo Electrónico...', 'required'])!!}
+                                        {!!Form::email('email', old('email'), ['class'=> 'form-control form-control-user', 'aria-describedby'=>'emailHelp','placeholder'=>'Ingresa tú correo electrónico...', 'required'])!!}
                                         
                                     </div>
                                     <div class="form-group">

@@ -14,10 +14,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'ConnectController@showLoginForm');
-
 Route::get('dashboard', 'DashboardController@index')->name('dashboard');
-
 Route::get('/login', 'ConnectController@getLogin')->name('login');
 Route::post('/login', 'ConnectController@postLogin')->name('login');
-
 Route::get('/logout', 'ConnectController@getLogout')->name('logout');
+
+
+//Catalogos
+// sucursal 
+
+Route::get('/brachoffices', function(){
+    return view('catalogs.branchoffices.home');
+});
